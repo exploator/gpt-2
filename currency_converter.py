@@ -8,14 +8,14 @@ def convert(amount, from_currency, to_currency):
         raise ValueError(f"Unsupported currency: {from_currency}")
     if to_currency not in CURRENCIES:
         raise ValueError(f"Unsupported currency: {to_currency}")
-    url = (
-        f"https://api.exchangerate.host/convert"
-        f"?from={from_currency}&to={to_currency}&amount={amount}"
-    )
+    url = f"https://open.er-api.com/v6/latest/{from_currency}"
     resp = requests.get(url)
     resp.raise_for_status()
     data = resp.json()
-    return data.get('result')
+    rates = data.get('rates')
+    if rates is None or to_currency not in rates:
+        raise ValueError('Unexpected API response')
+    return amount * rates[to_currency]
 
 
 if __name__ == '__main__':

@@ -3,7 +3,7 @@
 This repository contains simple utilities. The `currency_converter.py` script
 provides real-time currency conversion between Russian rubles (RUB), euros
 (EUR), US dollars (USD), and Kazakhstani tenge (KZT). It fetches current rates
-from the [exchangerate.host](https://exchangerate.host) API.
+from the [ExchangeRate-API](https://open.er-api.com/).
 
 ## Usage (Python)
 
